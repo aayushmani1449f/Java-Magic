@@ -16,7 +16,7 @@ From the workspace root:
 
 ```powershell
 # compile everything into .out
-javac -d .out Day1\*.java Day2\*.java Day3\*.java Day4\SnakeAndLadder.java
+javac -d .out Day1\*.java Day2\*.java Day3\*.java Day4\*.java
 
 # run one program (example)
 java -cp .out Q_1_1
