@@ -1,4 +1,6 @@
-# Practice Problems - Java
+# Java-Magic
+
+## Practice Problems - Java
 
 This workspace contains day-wise Java practice programs.
 
