@@ -7,7 +7,6 @@ public class Q_3_7 {
         int[] arr = new int[n];
         for (int i = 0; i < n; i++) arr[i] = sc.nextInt();
 
-        // odd position in 1-based indexing => indices 0,2,4...
         for (int i = 0; i < n; i += 2) {
             System.out.print(arr[i]);
             if (i + 2 < n) System.out.print(" ");

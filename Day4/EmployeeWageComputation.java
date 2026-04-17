@@ -9,40 +9,34 @@ public class EmployeeWageComputation {
         System.out.println("Welcome to Employee Wage Computation Program");
 
         EmployeeConfig config = new EmployeeConfig(
-                20,  // wage per hour
-                8,   // full day hours
-                4,   // part time hours
-                20,  // working days per month
-                100, // max hours per month
-                20   // max days per month
+                20,
+                8,
+                4,
+                20,
+                100,
+                20
         );
 
         EmployeeWageCalculator calculator = new EmployeeWageCalculator(config);
 
-        // UC1: Check employee present/absent using RANDOM attendance.
         AttendanceStatus attendance = calculator.checkAttendance();
         System.out.println("UC1 - Attendance: " + attendance);
 
-        // UC2: Calculate daily employee wage (full-time assumption).
         int dailyWageFullTime = calculator.calculateDailyWageFullTime(attendance);
         System.out.println("UC2 - Daily Wage (Full Time): " + dailyWageFullTime);
 
-        // UC3 + UC4: Add part-time employee & wage; solve using switch-case.
         WorkType todayWorkType = calculator.getWorkTypeRandom();
         int dailyWageByType = calculator.calculateDailyWageByWorkType(todayWorkType);
         System.out.println("UC3/UC4 - WorkType: " + todayWorkType + ", Daily Wage: " + dailyWageByType);
 
-        // UC5: Calculate wages for a month (20 working days).
         int monthlyWageFixedDays = calculator.calculateMonthlyWageFixedDays(config.workingDaysPerMonth);
         System.out.println("UC5 - Monthly Wage (20 working days): " + monthlyWageFixedDays);
 
-        // UC6 (as per prompt's last UC): Calculate wages till total hours or days reached.
         MonthWageResult capped = calculator.calculateMonthlyWageUntilCap();
         System.out.println("UC6 - Monthly Wage (capped): " + capped.totalWage
                 + " | days worked: " + capped.totalDaysWorked
                 + " | hours worked: " + capped.totalHoursWorked);
 
-        // Demonstrate Collection Library usage: print day-wise wages.
         System.out.println("Day-wise wages (from capped calculation):");
         for (Map.Entry<Integer, Integer> e : capped.dayToWage.entrySet()) {
             System.out.println("Day " + e.getKey() + " -> " + e.getValue());
@@ -101,7 +95,6 @@ final class EmployeeWageCalculator {
     private final EmployeeConfig config;
     private final Random random = new Random();
 
-    // instance variable: tracks last chosen work type for demo purposes
     private WorkType lastWorkType = WorkType.ABSENT;
 
     EmployeeWageCalculator(EmployeeConfig config) {
@@ -109,7 +102,7 @@ final class EmployeeWageCalculator {
     }
 
     AttendanceStatus checkAttendance() {
-        int isPresent = random.nextInt(2); // 0 or 1
+        int isPresent = random.nextInt(2);
         return isPresent == 1 ? AttendanceStatus.PRESENT : AttendanceStatus.ABSENT;
     }
 
@@ -119,7 +112,6 @@ final class EmployeeWageCalculator {
     }
 
     WorkType getWorkTypeRandom() {
-        // 0 = absent, 1 = full-time, 2 = part-time
         int v = random.nextInt(3);
         lastWorkType = switch (v) {
             case 1 -> WorkType.FULL_TIME;
@@ -165,7 +157,6 @@ final class EmployeeWageCalculator {
                 case ABSENT -> 0;
             };
 
-            // don't exceed max hours cap
             if (totalHours + hours > config.maxHoursPerMonth) {
                 hours = config.maxHoursPerMonth - totalHours;
                 if (hours < 0) hours = 0;

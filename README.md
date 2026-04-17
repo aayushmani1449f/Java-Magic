@@ -15,11 +15,11 @@ This workspace contains day-wise Java practice programs.
 From the workspace root:
 
 ```powershell
-# compile everything
-javac Day1\*.java Day2\*.java Day3\*.java
+# compile everything into .out
+javac -d .out Day1\*.java Day2\*.java Day3\*.java Day4\EmployeeWageComputation.java
 
 # run one program (example)
-java Day1.Q_1_1
+java -cp .out Q_1_1
 ```
 
 Note: Files are intentionally kept in the **default package** (no `package` line) to match beginner practice setups.
