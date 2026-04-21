@@ -26,6 +26,7 @@ public class Q_6_5 {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        int[] arr = { 1, 2, 3 };
         int n = sc.nextInt();
         if (n <= 0) {
             System.out.println("N must be positive");
