@@ -1,5 +1,6 @@
 import java.util.Random;
 
+// Two player game 
 public class SnakeAndLadder {
     private static final int START = 0;
     private static final int WIN = 100;
@@ -29,7 +30,8 @@ public class SnakeAndLadder {
             int next = applyMove(position, die, option);
             rolls++;
             position = next;
-            System.out.println("P1 Roll " + rolls + " -> die=" + die + ", option=" + optionName(option) + ", position=" + position);
+            System.out.println("P1 Roll " + rolls + " -> die=" + die + ", option=" + optionName(option) + ", position="
+                    + position);
         }
 
         return new GameResult(rolls);
@@ -37,7 +39,7 @@ public class SnakeAndLadder {
 
     private static TwoPlayerResult playTwoPlayers() {
         Random random = new Random();
-        int[] pos = {START, START};
+        int[] pos = { START, START };
         int current = 0;
         int rolls = 0;
 
@@ -49,10 +51,13 @@ public class SnakeAndLadder {
             rolls++;
             pos[current] = after;
 
-            System.out.println("P" + (current + 1) + " Roll " + rolls + " -> die=" + die + ", option=" + optionName(option) + ", position=" + after);
+            System.out.println("P" + (current + 1) + " Roll " + rolls + " -> die=" + die + ", option="
+                    + optionName(option) + ", position=" + after);
 
-            if (after == WIN) break;
-            if (option != LADDER) current = 1 - current;
+            if (after == WIN)
+                break;
+            if (option != LADDER)
+                current = 1 - current;
         }
 
         int winner = pos[0] == WIN ? 1 : 2;
@@ -74,8 +79,10 @@ public class SnakeAndLadder {
             next = position - die;
         }
 
-        if (next < START) next = START;
-        if (next > WIN) next = position;
+        if (next < START)
+            next = START;
+        if (next > WIN)
+            next = position;
         return next;
     }
 
@@ -88,7 +95,9 @@ public class SnakeAndLadder {
         };
     }
 
-    private record GameResult(int totalRolls) {}
-    private record TwoPlayerResult(int winnerPlayer, int totalRolls) {}
-}
+    private record GameResult(int totalRolls) {
+    }
 
+    private record TwoPlayerResult(int winnerPlayer, int totalRolls) {
+    }
+}
