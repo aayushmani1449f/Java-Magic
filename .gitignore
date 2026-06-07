@@ -1,14 +1,3 @@
-# Java
-*.class
-*.jar
-*.war
-*.ear
-.out/
-
-# IDE
 .idea/
-.vscode/
-
-# OS
-Thumbs.db
-Desktop.ini
+out/
+*.out
