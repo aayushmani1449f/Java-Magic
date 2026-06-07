@@ -5,13 +5,15 @@ public class Q_3_1 {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int[] arr = new int[n];
-        for (int i = 0; i < n; i++) arr[i] = sc.nextInt();
+        for (int i = 0; i < n; i++)
+            arr[i] = sc.nextInt();
 
         for (int i = 0; i < n; i++) {
             System.out.print(arr[i]);
-            if (i < n - 1) System.out.print(" ");
+            if (i < n - 1)
+                System.out.print(" ");
         }
         System.out.println();
+        sc.close();
     }
 }
-
